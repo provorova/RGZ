@@ -1,0 +1,26 @@
+aside {
+    background: #004A8C;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    overflow: auto;
+
+}
+main {
+    margin-left: 20%;
+}
+main div {
+    margin-bottom: 10px;
+}
+.nagrada {
+    background-color: white;
+    display: inline-block;
+    width: 45%;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
