@@ -4,11 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Основные финансовые показатели</title>
     <link rel="stylesheet" href="main.css">
+    <style>
+        footer {
+            font-family: 'Nunito', sans-serif;
+            text-align: right;
+            background: #f0f0f0;
+            padding: 10px;
+        }
+
+    </style>
+    <script>
+        function kurs() {
+            let data = ['Дата','03.04.2023','04.04.2023','05.04.2023','06.04.2023','07.04.2023',
+                        '10.04.2023','11.04.2023','12.04.2023','13.04.2023','14.04.2023','17.04.2023',
+                        '18.04.2023','19.04.2023','20.04.2023','21.04.2023','24.04.2023',
+                        '25.04.2023','26.04.2023','27.04.2023','28.04.2023'];
+            let price = ['Цена',234.30,233.85,231.85,260.00,258.00,263.00,256.25,
+                        261.70,257.80,264.25,265.60,273.40,269.70,264.80,260.75,
+                        260.15,257.30,257.65,257.65,250.35,241.05]
+            let table = document.getElementById('tab');
+            for (let i = 0; i < data.length; i++) {
+                let trd = document.createElement('tr');
+                let tdd = document.createElement('td');
+                tdd.innerHTML = data [i];
+                let tdp = document.createElement('td');
+                tdp.innerHTML = price [i];
+                trd.appendChild(tdd);
+                trd.appendChild(tdp);
+                table.appendChild(trd);    
+            }
+
+            let s = 0;
+            for (i = 1; i < data.length; i++) {
+                s = s + price[i];
+            }
+            let sr = s / (data.length-1);
+
+            let ss = 0;
+            for (i = 1; i < data.length; i++) {
+                ss = ss + (price[i]-sr)*(price[i]-sr);
+            }
+            let d = ss / (data.length-1);
+            let koren = Math.sqrt(d);
+            document.getElementById('p1').innerHTML = 'Среднеквадратическое отклонение: ' + koren.toFixed(3);
+
+            let min = 4567890;
+            let max = 0;
+            for (i = 1; i < data.length; i++) {
+                if (max < price[i]) {
+                    max = price[i];
+                }
+                if (min > price[i]) {
+                    min = price[i];
+                }
+            }
+            document.getElementById('p2').innerHTML = 'Минимальное значение: ' + min;
+            document.getElementById('p3').innerHTML = 'Максимальное значение: ' + max;
+        }   
+    </script>
 </head>
 
-<body>
+<body onload="kurs()">
     <header>
 
     </header>
@@ -23,11 +81,26 @@
     </aside>
 
     <main>
-        
+        <div style="margin: 10px 0 20px 5%;">
+            <div class="title2" style="color: #004A8C;">Капитализация</div>
+            <div><i>62 002.75 млн RUB</i></div>
+        </div>
+
+        <div style="margin: 10px 0 20px 5%;">
+            <div class="title2" style="color: #004A8C;">Общее число акций</div>
+            <div><i>282.22 млн шт</i></div>
+        </div>
+
+        <div class="title2" style="color: #004A8C;margin: 10px 0 5px 5%;">
+            Курс акций компании Мостотрест</div>
+        <table border="1" id="tab"></table>
+        <div class="r" style="margin-left: 5%;" id="p1"></div>
+        <div class="r" style="margin-left: 5%;" id="p2"></div>
+        <div class="r" style="margin-left: 5%;" id="p3"></div>
     </main>
 
     <footer>
-
+            &copy; РГЗ_Проворова Елена Андреевна ФБИ-11</br>2010-2023 ПАО «МОСТОТРЕСТ»
     </footer>
 </body>
 </html>
